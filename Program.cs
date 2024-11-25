@@ -1,3 +1,4 @@
+using Fluxor;
 using FluxorBlazorTest.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+var currentAssembly = typeof(Program).Assembly;
+builder.Services.AddFluxor(options => options.ScanAssemblies(currentAssembly));
 
 var app = builder.Build();
 
